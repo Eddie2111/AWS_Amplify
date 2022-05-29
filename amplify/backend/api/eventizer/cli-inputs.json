@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "eventizer",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "D:\\projects\\cloned\\aws_test\\test\\amplify\\backend\\api\\eventizer\\schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7,
+      "apiKeyExpirationDate": "2022-06-05T07:10:25.656Z",
+      "keyDescription": "eventizer"
+    }
+  }
+}
