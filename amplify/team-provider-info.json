@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-eventizer-dev-130856-authRole",
+      "UnauthRoleArn": "arn:aws:iam::778269483120:role/amplify-eventizer-dev-130856-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::778269483120:role/amplify-eventizer-dev-130856-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-eventizer-dev-130856-deployment",
+      "UnauthRoleName": "amplify-eventizer-dev-130856-unauthRole",
+      "StackName": "amplify-eventizer-dev-130856",
+      "StackId": "arn:aws:cloudformation:us-east-2:778269483120:stack/amplify-eventizer-dev-130856/3941cfb0-df1e-11ec-bf75-02601f6b733e",
+      "AmplifyAppId": "d33ql32cl18lqd"
+    }
+  }
+}
