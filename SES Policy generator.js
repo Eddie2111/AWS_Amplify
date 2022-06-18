@@ -1,7 +1,7 @@
 // Policy-1655523134821
 
-
-
+const ARN [Amazon Resource Name] = {  
+    # arn:aws:ses:us-east-2:002655968841:identity/team.eventizer@gmail.com
 {
     "Version": "2012-10-17",
     "Statement": [
