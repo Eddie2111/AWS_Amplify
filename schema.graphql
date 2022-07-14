@@ -1,54 +1,360 @@
-# This "input" configures a global authorization rule to enable public access to
-# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
-#input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+# ================== vendors ================= #
 
-type S3Object @model @auth(rules: [{allow: public}]) {
-  id          : ID! 
-  name        : String!
-  bucket      : String!
-  key         : String!
-  contentType : String!
-  createdAt   : AWSDateTime!
-  updatedAt   : AWSDateTime!
+
+type Photography
+  @model
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, update, read] }
+      { allow: groups, groupsField: "service" , operations:[read]}
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id:             ID!
+  service:        String!
+  specializedIn:  [AWSJSON!]!
+  title:          String!
+  deviceName:     String!
+  yearsOfExp:     String!
+  packages:       [AWSJSON!]
+  presentLocation:String!
+  serviceLocation:[AWSJSON!]!
+  portfolioLink:  [AWSJSON!]
+  portfolioImage: [String!]!
+  detailsAboutYou:String!
+  yourAddress:    String!
+  uploadYourPhoto:String!
+  nidFrontSide:   String!
+  nidBackSide:    String!
+  isConfirmed:    String!
 }
-enum Enum_service{
-  Cinematography
-  Photography
-  Videography
-  Decoration
+
+type Cinematography
+  @model
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, update, read] }
+      { allow: groups, groupsField: "service", operations:[read] }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id:              ID!
+  service:         String!
+  specializedIn:   [AWSJSON!]!
+  title:           String!
+  deviceName:      String!
+  yearsOfExp:      String!
+  presentLocation: String!
+  packages:        [AWSJSON!]
+  serviceLocation: [AWSJSON!]!
+  portfolioLink:   [AWSJSON!]
+  portfolioImage:  [String!]!
+  detailsAboutYou: String!
+  yourAddress:     String!
+  uploadYourPhoto: String!
+  nidFrontSide:    String!
+  nidBackSide:     String!
+  isConfirmed:     String!
 }
-type Todo @model  @auth(rules: [{allow: owner}]){
+
+type Decoration
+  @model
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, update, read] }
+      { allow: groups, groupsField: "service", operations:[read] }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id:              ID!
+  service:         String!
+  specializedIn:  [AWSJSON!]!
+  title:           String!
+  yearsOfExp:      String!
+  presentLocation: String!
+  packages:        [AWSJSON!]
+  serviceLocation: [AWSJSON!]!
+  portfolioLink:   [AWSJSON!]
+  portfolioImage:  [String!]!
+  detailsAboutYou:  String!
+  yourAddress:      String!
+  uploadYourPhoto:  String!
+  nidFrontSide:    String!
+  nidBackSide:     String!
+  isConfirmed:     String!
+}
+
+type PrintingPress 
+  @model
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, update, read] }
+      { allow: groups, groupsField: "service", operations:[read] }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id:             ID!
+  service:        String!
+  specializedIn:  [AWSJSON!]!
+  title:           String!
+  yearsOfExp:      String!
+  presentLocation: String!
+  serviceLocation: [AWSJSON!]!
+  portfolioLink:   [AWSJSON!]
+  portfolioImage:  [String!]!
+  packages:        [AWSJSON!]
+  detailsAboutYou: String!
+  yourAddress:     String!
+  uploadYourPhoto: String!
+  nidFrontSide:    String!
+  nidBackSide:     String!
+  isConfirmed:     String!
+}
+
+type GiftItems
+  @model
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, update, read] }
+      { allow: groups, groupsField: "service", operations:[read] }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id:              ID!
+  service:         String!
+  specializedIn:   [AWSJSON!]!
+  title:           String!
+  yearsOfExp:      String!
+  presentLocation: String!
+  serviceLocation: [AWSJSON!]!
+  portfolioLink:   [AWSJSON!]
+  portfolioImage:  [String!]!
+  packages:        [AWSJSON!]
+  detailsAboutYou: String!
+  yourAddress:     String!
+  uploadYourPhoto: String!
+  nidFrontSide:    String!
+  nidBackSide:     String!
+  isConfirmed:     String!
+}
+
+type MehediArtist
+  @model
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, update, read] }
+      { allow: groups, groupsField: "service" , operations:[read]}
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id:           ID!
+  service:      String!
+  title:        String!
+  teamMember:   String!
+  yearsOfExp:    String!
+  presentLocation: String!
+  serviceLocation: [AWSJSON!]!
+  portfolioLink:   [AWSJSON!]
+  packages:        [AWSJSON!]
+  portfolioImage:  [String!]!
+  detailsAboutYou: String!
+  yourAddress:     String!
+  uploadYourPhoto: String!
+  nidFrontSide:    String!
+  nidBackSide:     String!
+  isConfirmed:     String!
+}
+
+type MakeupArtist
+  @model
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, update, read] }
+      { allow: groups, groupsField: "service", operations:[read] }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
   id: ID!
-  name: String!
-  description: String!
-}
-type Service @model @auth(rules: [{allow: owner}]) {
-  serviceName: String!
-  firstname: String!
-  lastname : String!
-  email: String!
-  password: String!
-  personalInformation: Personal @hasOne
-  professionalInformation: Professional @hasOne
-}
-
-type Personal @model @auth(rules: [{allow: public}]){
-  details: String!
-  photo: S3Object!
-  address: String!
-  nidfront: S3Object!
-  nidback: S3Object!
-  service: Service! @hasOne
+  service: String!
+  title: String!
+  teamMember: String!
+  yearsOfExp: String!
+  presentLocation: String!
+  packages:       [AWSJSON!]
+  serviceLocation: [AWSJSON!]!
+  portfolioLink: [AWSJSON!]
+  portfolioImage: [String!]!
+  detailsAboutYou: String!
+  yourAddress: String!
+  uploadYourPhoto: String!
+  nidFrontSide: String!
+  nidBackSide: String!
+  isConfirmed: String!
 }
 
-type Professional @model @auth(rules: [{allow: public}]) {
-  plate: String!
-  specialize: String!
-  serviceName: String!
-  device: String!
-  yearsofExperience: String!
-  location: String! 
-  photographyLocation: String!
-  portfolioImages: [S3Object!] 
-  service: Service! @hasOne
+type DJMusician
+  @model
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, update, read] }
+      { allow: groups, groupsField: "service", operations:[read] }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id:               ID!
+  service:          String!
+  specializedIn:    [AWSJSON!]!
+  title:            String!
+  teamMember:       String!
+  yearsOfExp:       String!
+  presentLocation:  String!
+  serviceLocation:  [AWSJSON!]!
+  portfolioLink:    [AWSJSON!]
+  portfolioImage:   [String!]!
+  packages:         [AWSJSON!]
+  detailsAboutYou:  String!
+  yourAddress:      String!
+  uploadYourPhoto:  String!
+  nidFrontSide:     String!
+  nidBackSide:      String!
+  isConfirmed:      String!
 }
+
+type BrandPromoter
+  @model
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, update, read] }
+      { allow: groups, groupsField: "service", operations:[read] }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id:              ID!
+  service:         String!
+  specializedIn:   [AWSJSON!]!
+  title:           String!
+  yearsOfExp:      String!
+  presentLocation: String!
+  serviceLocation: [AWSJSON!]!
+  portfolioLink:   [AWSJSON!]
+  portfolioImage:  [String!]!
+  detailsAboutYou: String!
+  yourAddress:     String!
+  uploadYourPhoto: String!
+  nidFrontSide:    String!
+  nidBackSide:     String!
+  isConfirmed:     String!
+}
+
+type Rental
+  @model
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, update, read] }
+      { allow: groups, groupsField: "service", operations:[read] }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id:              ID!
+  service:         String!
+  title:           String!
+  yearsOfExp:      String!
+  presentLocation: String!
+  serviceLocation: [AWSJSON!]!
+  portfolioLink:   [AWSJSON!]
+  portfolioImage:  [String!]!
+  detailsAboutYou: String!
+  yourAddress:     String!
+  uploadYourPhoto: String!
+  nidFrontSide:    String!
+  nidBackSide:     String!
+  isConfirmed:    String!
+  # ========= rental extra ========
+  vehicleType: String!
+  carModelName: String!
+  maxSeatCapacity: String!
+  drivingLicenseNumber: String!
+  licenseExpiredDate: String!
+  licenseFrontSide: String!
+  licenseBackSide: String!
+}
+
+#################### users #######################
+
+## users incomplete, will be updated upon research
+type user
+  @model
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, update, read] }
+      { allow: groups, groupsField: "users" }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+    ## input goes here
+    id:             ID!
+    firstName:      String!
+    lastName:       String!
+    address:        String!
+    phoneNumber:    Int!
+    email:          String!
+    nid:            String
+    profilePicture: String
+    reviews:        [AWSJSON!]
+    searchedfor:    [String!]
+    orders:         [String!]
+  }
+##################
+# Reviews= [{
+#   id: ID!
+#   user: user sub[id]!
+#   vendor: vendor sub[id]! 
+#   review: String!
+#   rating: Int!
+#   date: String!
+# }]
+##################
+
+
+## ================ Admin ================== ##
+## admin section will be here
+
+## reviews 
+## orders
+
+## ================ Admin ================== ##
+
+type reviews
+  @model
+  @auth(
+    rules: [
+      { allow: owner, operations: [create] }
+      { allow: groups, groupsField: "users", operations:[create]}
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+    ## input goes here
+    id:             ID!
+    userID:         ID!
+    vendorID:       ID!
+    description:    String!
+    service:        String!
+    servicetype:    String! # wedding→photography, event→cinematography, birthday→musician
+    behavior:       Int # 5=best, 2=good, 3=average, 4=bad, 1=worst
+    value:          Int # 5=best, 2=good, 3=average, 4=bad, 1=worst [how much budget efficient it was]
+    time:           Int # 5=best, 2=good, 3=average, 4=bad, 1=worst [how much time efficient it was]
+    rating:         Int!
+    date:           String!
+  }
